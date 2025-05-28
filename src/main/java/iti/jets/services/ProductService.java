@@ -29,10 +29,10 @@ public class ProductService {
         log.info(products.getFirst().getName());
 //        log.info(products.getFirst().getProductImgs().getFirst().getImg());
         List<ProductSummaryDTO> res = new ArrayList<>();
-//        products.forEach(product -> {
-//            ProductSummaryDTO p = productMapper.entityToSummaryDto(product);
-//            res.add(p);
-//        });
+        products.forEach(product -> {
+            ProductSummaryDTO p = productMapper.entityToSummaryDto(product);
+            res.add(p);
+        });
         return res;
     }
 
