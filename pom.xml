@@ -79,7 +79,8 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <scope>provided</scope>
+<!--      <scope>provided</scope>-->
+      <version>1.18.38</version>
     </dependency>
 
     <!-- flyway -->
@@ -155,6 +156,7 @@
           <annotationProcessorPath>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.38</version>
           </annotationProcessorPath>
             <path>
               <groupId>org.mapstruct</groupId>

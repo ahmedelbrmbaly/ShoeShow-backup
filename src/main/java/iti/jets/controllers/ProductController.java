@@ -1,5 +1,6 @@
 package iti.jets.controllers;
 
+import iti.jets.model.dtos.ProductSummaryDTO;
 import iti.jets.model.entities.Product;
 import iti.jets.services.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,7 @@ public class ProductController {
     }
 
     @GetMapping
-    ResponseEntity<List<Product>> getAllProducts() {
-        return null;
+    ResponseEntity<List<ProductSummaryDTO>> getAllProducts() {
+        return ResponseEntity.ok(productService.getFilteredProducts());
     }
 }
