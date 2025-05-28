@@ -1,0 +1,12 @@
+package iti.jets.model.dtos;
+
+import lombok.*;
+
+@Data
+public class UserAddressDTO {
+    private Long addressId;
+    private Integer buildingNumber;
+    private String street;
+    private String state;
+    private Boolean isDefault;
+}
