@@ -29,6 +29,18 @@ public class UserService {
     }
 
     /**
+     * Helper method to find a user by ID.
+     *
+     * @param id User ID
+     * @return User entity
+     * @throws ResourceNotFoundException if user not found
+     */
+    private User findUserById(Long id) {
+        return userRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+    }
+
+    /**
      * Retrieves a list of all users.
      *
      * @return List of UserManageDTO objects
@@ -47,8 +59,7 @@ public class UserService {
      * @throws ResourceNotFoundException if user not found
      */
     public UserProfileDataDTO getUserById(Long id) {
-        User user = userRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        User user = findUserById(id);
         return userMapper.toUserProfileDataDTO(user);
     }
 
@@ -62,8 +73,7 @@ public class UserService {
      */
     @Transactional
     public UserProfileDataDTO updateUser(Long id, UserProfileDataDTO userProfileDataDTO) {
-        User user = userRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        User user = findUserById(id);
 
         // Update user fields
         user.setName(userProfileDataDTO.getName());
