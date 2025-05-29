@@ -33,28 +33,4 @@ public class Wishlist {
         this.product = product;
     }
 
-    // Getters and setters
-//    public Integer getItemId() {
-//        return itemId;
-//    }
-//
-//    public void setItemId(Integer itemId) {
-//        this.itemId = itemId;
-//    }
-//
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-//
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
 }
