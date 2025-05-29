@@ -37,7 +37,7 @@ public class UserService {
      */
     private User findUserById(Long id) {
         return userRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_MESSAGE + id));
+                .orElseThrow(() -> new ResourceNotFoundException("USER_NOT_FOUND_MESSAGE" + id));
     }
 
     /**
