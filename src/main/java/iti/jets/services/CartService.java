@@ -101,6 +101,7 @@ public class CartService {
     }
 
     public void updateCartItem(Long userId, ShoppingCartSummaryDTO shoppingCartSummaryDTO) {
+        //the same scenario check is exists -> update (just quantity)
         addToCart(userId , shoppingCartSummaryDTO);
     }
 }
