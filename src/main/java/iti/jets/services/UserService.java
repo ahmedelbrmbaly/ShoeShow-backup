@@ -36,7 +36,7 @@ public class UserService {
      * @throws ResourceNotFoundException if user not found
      */
     private User findUserById(Long id) {
-        return userRepo.findById(id)
+        return userRepo.findByUserId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("USER_NOT_FOUND_MESSAGE" + id));
     }
 
