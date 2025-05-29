@@ -18,7 +18,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private Long product_id;
+    private Long productId;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;
@@ -60,7 +60,7 @@ public class Product {
     }
 
     public Product(Long productId, String name, String description, Category category, Gender gender, BigDecimal price, String brand, Timestamp addedAt, Integer sold, Timestamp updatedAt) {
-        this.product_id = productId;
+        this.productId = productId;
         this.name = name;
         this.description = description;
         this.category = category;

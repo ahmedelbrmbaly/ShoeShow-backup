@@ -5,4 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WishListRepo extends JpaRepository<Wishlist, Long> {
 
+    boolean existsByUserUserIdAndProductProductId(Long userUserId, Long productProductId);
+
+    void deleteByUserUserIdAndProductProductId(Long userUserId, Long productProductId);
 }
