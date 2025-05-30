@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-public interface UserRepo extends JpaRepository<User, Integer> {
+public interface UserRepo extends JpaRepository<User, Long> {
     Optional<User> findByUserId(Long userId);
 
     @Query("SELECT u.creditLimit FROM User u WHERE u.userId = :userId")
