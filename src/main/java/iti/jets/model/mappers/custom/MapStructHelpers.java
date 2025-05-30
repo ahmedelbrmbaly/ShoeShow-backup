@@ -1,5 +1,6 @@
 package iti.jets.model.mappers.custom;
 
+import iti.jets.model.dtos.ProductInfoDTO;
 import iti.jets.model.dtos.ShoppingCartSummaryDTO;
 import iti.jets.model.dtos.UserDTO;
 import iti.jets.model.entities.*;
@@ -41,7 +42,4 @@ public class MapStructHelpers {
         return productImgs;
     }
 
-//    public static List<ShoppingCartSummaryDTO> mapCartItems(User user) {
-//        return user.getShoppingCart().stream().map(ShoppingCart::getProductInfo)
-//    }
 }
