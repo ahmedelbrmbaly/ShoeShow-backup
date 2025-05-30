@@ -1,17 +1,11 @@
 package iti.jets.services;
-
-import iti.jets.exceptions.BadRequestException;
 import iti.jets.exceptions.ResourceNotFoundException;
 import iti.jets.model.dtos.PagedResponse;
 import iti.jets.model.dtos.ProductDetailDTO;
 import iti.jets.model.dtos.ProductSummaryDTO;
 import iti.jets.exceptions.FileStorageException;
-import iti.jets.exceptions.ResourceNotFoundException;
 import iti.jets.model.dtos.*;
 import iti.jets.model.entities.Product;
-import iti.jets.model.enums.Category;
-import iti.jets.model.enums.Gender;
-import iti.jets.model.enums.ShoeSize;
 import iti.jets.model.entities.ProductInfo;
 import iti.jets.model.entities.Size;
 import iti.jets.model.mappers.ProductInfoMapper;
@@ -19,26 +13,18 @@ import iti.jets.model.mappers.ProductMapper;
 import iti.jets.model.mappers.SizeMapper;
 import iti.jets.model.mappers.custom.MapStructHelpers;
 import iti.jets.repositories.ProductRepo;
-import iti.jets.repositories.specifications.ProductSpecifications;
 import iti.jets.utils.ProductServiceHelper;
-import jakarta.persistence.EntityManager;
-import jakarta.servlet.http.Part;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -50,29 +36,26 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ProductService {
     private final SizeMapper sizeMapper;
-
     private final ProductMapper productMapper;
     private final ProductRepo productRepo;
     private final ProductServiceHelper productServiceHelper;
-    public ProductService(
-            ProductMapper productMapper
-            , ProductRepo productRepo
-            , ProductServiceHelper productServiceHelper
-    ) {
-    private final ProductRepo productRepo;
     private final FileStorageService fileStorageService;
     private final ProductInfoMapper productInfoMapper;
 
-    public ProductService(ProductMapper productMapper, ProductRepo productRepo, FileStorageService fileStorageService,
-                          SizeMapper sizeMapper, ProductInfoMapper productInfoMapper) {
+    public ProductService(SizeMapper sizeMapper
+            , ProductMapper productMapper
+            , ProductRepo productRepo
+            , ProductServiceHelper productServiceHelper
+            , FileStorageService fileStorageService
+            , ProductInfoMapper productInfoMapper) {
+        this.sizeMapper = sizeMapper;
         this.productMapper = productMapper;
         this.productRepo = productRepo;
         this.productServiceHelper = productServiceHelper;
         this.fileStorageService = fileStorageService;
-        this.sizeMapper = sizeMapper;
-
         this.productInfoMapper = productInfoMapper;
     }
+
 
     public PagedResponse<ProductSummaryDTO> getFilteredProducts(
             List<String> brand, List<String> size, List<String> color,
