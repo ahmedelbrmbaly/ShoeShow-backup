@@ -104,4 +104,9 @@ public class CartService {
         //the same scenario check is exists -> update (just quantity)
         addToCart(userId , shoppingCartSummaryDTO);
     }
+
+    public void deleteCartItems(Long userId)
+    {
+        cartRepo.deleteAllByUserId(userId);
+    }
 }

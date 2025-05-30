@@ -1,6 +1,7 @@
 package iti.jets.controllers;
 
 import iti.jets.model.dtos.OrderDTO;
+import iti.jets.model.dtos.OrderManageDTO;
 import iti.jets.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,8 @@ public class AdminOrderController {
     private OrderService orderService;
 
     @GetMapping
-    public List<OrderDTO> getAllOrders() {
-        List<OrderDTO> orders = orderService.getAllOrdersForAdmin();
-        return orders;
+    public List<OrderManageDTO> getAllOrders() {
+        return orderService.getAllOrdersForAdmin();
     }
 
     @PutMapping("/{orderId}")

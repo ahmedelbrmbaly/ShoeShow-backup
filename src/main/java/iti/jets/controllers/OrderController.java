@@ -24,7 +24,10 @@ public class OrderController {
         return ResponseEntity.ok(orders);
     }
 
-
-    // TODO second method
+    @PostMapping
+    public void placeOrder(@PathVariable Long userId)
+    {
+       orderService.checkout(userId);
+    }
 
 }
