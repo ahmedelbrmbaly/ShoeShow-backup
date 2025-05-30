@@ -41,7 +41,10 @@ public class OrderService {
 
     public List<OrderDTO> getOrdersByUserId(Long userId){
         List<Order> orders = orderRepo.findByUser_UserId(userId);
-
+        if(orders == null || orders.isEmpty())
+        {
+            throw new ResourceNotFoundException("Not have orders yet");
+        }
         return orders.stream()
                 .map(orderMapper::toOrderDTO)
                 .collect(Collectors.toList());
@@ -51,9 +54,6 @@ public class OrderService {
         List<OrderManageDTO>orderManageDTOS =  orderRepo.findAll().stream()
                 .map(orderMapper::toOrderManageDto)
                 .collect(Collectors.toList());
-
-        System.out.println("emaillll");
-        orderManageDTOS.forEach(orderManageDTO -> System.out.println(orderManageDTO.getEmail()));
         return orderManageDTOS;
     }
 
@@ -89,7 +89,7 @@ public class OrderService {
     {
         List<ShoppingCartDTO> shoppingCartDTOS =  cartService.getCartItemsByUserId(userId);
         if (shoppingCartDTOS == null || shoppingCartDTOS.isEmpty()) {
-            throw new BadRequestException("Cart is empty");
+            throw new BadRequestException("Shopping cart is empty");
         }
 
        // get total amount
@@ -125,11 +125,16 @@ public class OrderService {
                 OrderItem orderItem = new OrderItem();
 
                 orderItem.setProductInfo(productInfoRepo.findById(shoppingCartDTO.getProductInfoId())
-                        .orElseThrow(() -> new ResourceNotFoundException("Product not found")));
+                        .orElseThrow(() -> new ResourceNotFoundException("ProductInfo not found")));
 
                 orderItem.setQuantity(shoppingCartDTO.getQuantity());
                 orderItem.setPriceAtPurchase(BigDecimal.valueOf((long) shoppingCartDTO.getPrice().intValue() * shoppingCartDTO.getQuantity()));
                 orderItem.setOrder(order);
+
+                // update quantity of each product
+                ProductInfo productInfo = productInfoRepo.findById(shoppingCartDTO.getProductInfoId()).get();
+                productInfo.setQuantity(productInfo.getQuantity() - shoppingCartDTO.getQuantity());
+
                 return orderItem;
             }).collect(Collectors.toList());
 
@@ -140,6 +145,10 @@ public class OrderService {
 
             // clear shopping cart
             cartService.deleteCartItems(userId);
+
+            // update credit limit
+            user.setCreditLimit(BigDecimal.valueOf(user.getCreditLimit().intValue() - totalAmount));
+            userRepo.save(user);
         }
         else
         {

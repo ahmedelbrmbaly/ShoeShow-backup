@@ -41,6 +41,10 @@ public class CartService {
 
     public List<ShoppingCartDTO> getCartItemsByUserId(Long userId) {
         List<ShoppingCart> shoppingCarts = cartRepo.findByUser_UserId(userId);
+        if(shoppingCarts == null || shoppingCarts.isEmpty())
+        {
+            throw new ResourceNotFoundException("Shopping cart is empty");
+        }
         return shoppingCarts.stream()
                 .map(shoppingCartMapper::toShoppingCartDto)
                 .collect(Collectors.toList());
@@ -95,7 +99,7 @@ public class CartService {
         // check if item exists
         if(cartRepo.findByItemId(itemId) == null)
         {
-            throw new ValidationException("Cart item not found");
+            throw new ValidationException("Shopping cart item not found");
         }
         cartRepo.deleteById(itemId);
     }

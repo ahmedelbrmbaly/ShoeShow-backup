@@ -13,7 +13,7 @@ import org.mapstruct.Mapping;
 public interface ShoppingCartMapper {
 
     @Mapping(source = "user.userId", target = "userId")
-    @Mapping(source = "productInfo.product.product_id", target = "productId")
+    @Mapping(source = "productInfo.product.productId", target = "productId")
     @Mapping(source = "productInfo.productInfoId", target = "productInfoId")
     @Mapping(source = "productInfo.product.name", target = "name")
     // @Mapping(expression = "java(shoppingCart.getProductInfo().getSize())" , target = "size" ,qualifiedByName = "toShoeSize")

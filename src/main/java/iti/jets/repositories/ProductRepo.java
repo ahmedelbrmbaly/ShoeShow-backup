@@ -10,10 +10,10 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 public interface ProductRepo extends JpaRepository<Product, Long> {
+
     @Override
     Optional<Product> findById (Long productId);
 
-    @Query("SELECT p.price FROM Product p WHERE p.product_id = :productId")
+    @Query("SELECT p.price FROM Product p WHERE p.productId = :productId")
     BigDecimal findPriceByProductId(@Param("productId") Long productId);
-
 }
