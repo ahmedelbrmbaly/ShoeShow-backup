@@ -1,9 +1,7 @@
 package iti.jets.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,6 +12,9 @@ import java.util.List;
 @Table(name = "User")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -63,8 +64,7 @@ public class User {
     private List<Wishlist> wishlist;
 
     // constructors
-    public User() {}
-    public User(Long userId, String name, String phoneNumber, String email, String password, Date birthdate, String job, BigDecimal creditLimit, String interests, Timestamp createdAt) {
+        public User(Long userId, String name, String phoneNumber, String email, String password, Date birthdate, String job, BigDecimal creditLimit, String interests, Timestamp createdAt) {
         this.userId = userId;
         this.name = name;
         this.phoneNumber = phoneNumber;

@@ -1,5 +1,8 @@
 package iti.jets.model.enums;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public enum ShoeSize {
     SIZE_35(35L), SIZE_36(36L), SIZE_37(37L), SIZE_38(38L), SIZE_39(39L),
     SIZE_40(40L), SIZE_41(41L), SIZE_42(42L), SIZE_43(43L), SIZE_44(44L),
@@ -16,8 +19,9 @@ public enum ShoeSize {
     }
 
     public static ShoeSize fromValue(Long value) {
+        if (value == null) return null;
         for (ShoeSize size : ShoeSize.values()) {
-            if (size.value == value) {
+            if (size.getValue().equals(value)) {
                 return size;
             }
         }
