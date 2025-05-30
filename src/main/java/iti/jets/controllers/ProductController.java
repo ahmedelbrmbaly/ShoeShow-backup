@@ -20,8 +20,6 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-
-
     @GetMapping("/hello")
     public String hello() {
         log.info("Hello World");

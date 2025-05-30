@@ -37,35 +37,35 @@ public class ProductImg {
     }
 
 //    // Getters and setters
-//    public Integer getImageId() {
-//        return imageId;
-//    }
-//
-//    public void setImageId(Integer imageId) {
-//        this.imageId = imageId;
-//    }
-//
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
-//
-//    public String getImg() {
-//        return img;
-//    }
-//
-//    public void setImg(String img) {
-//        this.img = img;
-//    }
-//
-//    public Boolean getIsDefault() {
-//        return isDefault;
-//    }
-//
-//    public void setIsDefault(Boolean isDefault) {
-//        this.isDefault = isDefault;
-//    }
+    public Long getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Long imageId) {
+        this.imageId = imageId;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Boolean getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
+    }
 }

@@ -1,16 +1,25 @@
 package iti.jets.exceptions;
 
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(ResourceNotFoundException.class)
     ResponseEntity<ErrorResponseDTO> handleResourceNotFound(ResourceNotFoundException ex, HttpServletRequest request) {
@@ -20,6 +29,7 @@ public class GlobalExceptionHandler {
                 request.getRequestURI(),
                 404,
                 "Not Found");
+        LOGGER.error("Resource not found: {}", ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
@@ -31,6 +41,7 @@ public class GlobalExceptionHandler {
                 request.getRequestURI(),
                 409,
                 "Conflict");
+        LOGGER.error("Conflict: {}", ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
@@ -42,6 +53,7 @@ public class GlobalExceptionHandler {
                 request.getRequestURI(),
                 400,
                 "Bad Request");
+        LOGGER.error("Validation error: {}", ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
@@ -53,6 +65,7 @@ public class GlobalExceptionHandler {
                 request.getRequestURI(),
                 401,
                 "Unauthorized");
+        LOGGER.error("Unauthorized: {}", ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
     }
 
@@ -64,6 +77,7 @@ public class GlobalExceptionHandler {
                 request.getRequestURI(),
                 400,
                 "Bad Request");
+        LOGGER.error("Bad request: {}", ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
@@ -74,6 +88,7 @@ public class GlobalExceptionHandler {
                 ex.getMessage(),request.getRequestURI(),
                 403,
                 "Forbidden");
+        LOGGER.error("Forbidden: {}", ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
     }
 
@@ -85,6 +100,44 @@ public class GlobalExceptionHandler {
                 request.getRequestURI(),
                 500,
                 "Internal Server Error");
+        LOGGER.error("Internal server error: {}", ex.getMessage(), ex);
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(FileStorageException.class)
+    ResponseEntity<ErrorResponseDTO> handleFileStorageException(FileStorageException ex, HttpServletRequest request) {
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO(
+                LocalDateTime.now(),
+                ex.getMessage(),
+                request.getRequestURI(),
+                500,
+                "Upload Failed");
+        LOGGER.error("File storage error: {}", ex.getMessage(), ex);
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        for (FieldError error : ex.getBindingResult().getFieldErrors()) {
+            errors.put(error.getField(), error.getDefaultMessage());
+        }
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    @Schema(description = "Validation error response")
+    private record ValidationErrorResponse(
+            @Schema(description = "Error message", example = "Validation failed")
+            String message,
+            @Schema(description = "List of validation errors")
+            List<ValidationError> errors
+    ) {}
+
+    @Schema(description = "Individual validation error")
+    private record ValidationError(
+            @Schema(description = "Field name", example = "name")
+            String field,
+            @Schema(description = "Error message", example = "Name is required")
+            String message
+    ) {}
 }

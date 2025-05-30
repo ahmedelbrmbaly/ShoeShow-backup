@@ -49,7 +49,7 @@ public class Product {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updatedAt;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ProductInfo> productInfos;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -84,102 +84,102 @@ public class Product {
     }
 
 //    // Getters and setters
-//
-//
-//    public Integer getProduct_id() {
-//        return product_id;
-//    }
-//
-//    public void setProduct_id(Integer product_id) {
-//        this.product_id = product_id;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-//
-//    public Category getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(Category category) {
-//        this.category = category;
-//    }
-//
-//    public Gender getGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(Gender gender) {
-//        this.gender = gender;
-//    }
-//
-//    public BigDecimal getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(BigDecimal price) {
-//        this.price = price;
-//    }
-//
-//    public String getBrand() {
-//        return brand;
-//    }
-//
-//    public void setBrand(String brand) {
-//        this.brand = brand;
-//    }
-//
-//    public Timestamp getAddedAt() {
-//        return addedAt;
-//    }
-//
-//    public void setAddedAt(Timestamp addedAt) {
-//        this.addedAt = addedAt;
-//    }
-//
-//    public Integer getSold() {
-//        return sold;
-//    }
-//
-//    public void setSold(Integer sold) {
-//        this.sold = sold;
-//    }
-//
-//    public Timestamp getUpdatedAt() {
-//        return updatedAt;
-//    }
-//
-//    public void setUpdatedAt(Timestamp updatedAt) {
-//        this.updatedAt = updatedAt;
-//    }
-//
-//    public List<ProductInfo> getProductInfos() {
-//        return productInfos;
-//    }
-//
-//    public void setProductInfos(List<ProductInfo> productInfos) {
-//        this.productInfos = productInfos;
-//    }
-//
-//    public List<ProductImg> getProductImgs() {
-//        return productImgs;
-//    }
-//
-//    public void setProductImgs(List<ProductImg> productImgs) {
-//        this.productImgs = productImgs;
-//    }
+
+
+    public Long getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(Long product_id) {
+        this.product_id = product_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public Timestamp getAddedAt() {
+        return addedAt;
+    }
+
+    public void setAddedAt(Timestamp addedAt) {
+        this.addedAt = addedAt;
+    }
+
+    public Integer getSold() {
+        return sold;
+    }
+
+    public void setSold(Integer sold) {
+        this.sold = sold;
+    }
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<ProductInfo> getProductInfos() {
+        return productInfos;
+    }
+
+    public void setProductInfos(List<ProductInfo> productInfos) {
+        this.productInfos = productInfos;
+    }
+
+    public List<ProductImg> getProductImgs() {
+        return productImgs;
+    }
+
+    public void setProductImgs(List<ProductImg> productImgs) {
+        this.productImgs = productImgs;
+    }
 
 }
