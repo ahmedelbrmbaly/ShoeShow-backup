@@ -3,11 +3,11 @@ iti_grad;
 
 INSERT INTO User (name, phone_number, email, password, birthdate, job, credit_limit, interests)
 VALUES ('Tom Lee', '01011112222', 'tom@example.com', '$2a$10$aQmNrJURhcUJ6mnhk94AD.zBF4JsI8rNxBUrvFvCAmtWzuyMud5CC', '1999-03-14', 'Engineer', 10000.00,
-        'SNEAKERS,CASUAL'),
+        'SNEAKERS,CASUAL'), --pass123
        ('Ann Kim', '01033334444', 'ann@example.com', '$2a$10$ALIMK0F/tm9z0N02bcaVueflM6e96xBBx8ctUrWKj7djsXsMg04cW', '1998-08-21', 'Designer', 8000.00,
-        'CLASSIC,SNEAKERS'),
+        'CLASSIC,SNEAKERS'),--pass456
        ('Bob Jay', '01055556666', 'bob@example.com', '$2a$10$DMld26R.lbIzCF3iSvSbMembMuO2SqKjkHaQzf9laMN.75bqxFZIC', '1997-12-01', 'Developer', 12000.00,
-        'SNEAKERS,CLASSIC');
+        'SNEAKERS,CLASSIC'); --pass789
 
 INSERT INTO UserAddress (user_id, state, street, building_number, is_default)
 VALUES (1, 'Cairo', 'Tahrir St.', 5, true),
