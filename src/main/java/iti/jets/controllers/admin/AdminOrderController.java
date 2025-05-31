@@ -1,10 +1,9 @@
-package iti.jets.controllers;
+package iti.jets.controllers.admin;
 
 import iti.jets.model.dtos.OrderDTO;
 import iti.jets.model.dtos.OrderManageDTO;
 import iti.jets.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

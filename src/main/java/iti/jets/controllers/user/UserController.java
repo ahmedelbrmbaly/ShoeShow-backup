@@ -1,15 +1,11 @@
-package iti.jets.controllers;
+package iti.jets.controllers.user;
 
-import iti.jets.model.dtos.UserManageDTO;
 import iti.jets.model.dtos.UserProfileDataDTO;
 import iti.jets.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * REST controller for user management operations.
@@ -31,12 +27,7 @@ public class UserController {
      *
      * @return ResponseEntity containing a list of UserManageDTO objects
      */
-    @GetMapping
-    public ResponseEntity<List<UserManageDTO>> getAllUsers() {
-        log.info("Retrieving all users");
-        List<UserManageDTO> users = userService.getAllUsers();
-        return ResponseEntity.ok(users);
-    }
+
 
     /**
      * Retrieves the profile details of a user by ID.

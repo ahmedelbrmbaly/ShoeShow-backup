@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class ProductDetail {
-    int product_info_id;
-    int product_id;
+    int productInfoId;
+    int productId;
     int size;
     String color;
 }

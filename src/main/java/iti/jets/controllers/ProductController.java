@@ -4,10 +4,8 @@ import iti.jets.model.dtos.PagedResponse;
 import iti.jets.model.dtos.ProductDetailDTO;
 import iti.jets.model.dtos.ProductSummaryDTO;
 import iti.jets.services.ProductService;
-import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +21,6 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PreAuthorize("hasRole('USER')")
     @GetMapping(produces = "application/json")
     ResponseEntity<PagedResponse<ProductSummaryDTO>> getAllProducts(
             @RequestParam(required = false) List<String> brand
@@ -41,7 +38,6 @@ public class ProductController {
         ));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{productId}")
     public ResponseEntity<ProductDetailDTO> getProductDetail(@PathVariable Long productId) {
         log.info("productId: " + productId);

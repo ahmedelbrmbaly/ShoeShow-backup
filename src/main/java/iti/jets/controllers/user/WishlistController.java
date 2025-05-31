@@ -1,8 +1,6 @@
-package iti.jets.controllers;
+package iti.jets.controllers.user;
 
 import iti.jets.model.dtos.ProductSummaryDTO;
-import iti.jets.model.entities.Product;
-import iti.jets.repositories.WishListRepo;
 import iti.jets.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

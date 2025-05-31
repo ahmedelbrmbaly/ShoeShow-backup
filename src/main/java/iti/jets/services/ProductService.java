@@ -85,7 +85,10 @@ public class ProductService {
     public ProductDetailDTO getProductDetail(Long productId) {
         Product product = productRepo.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found: " + productId));
-        return productMapper.entityToDetailDto(product);
+        ProductDetailDTO productDetailDTO = productMapper.entityToDetailDto(product);
+        log.info("Retrieved product detail: {}", product.getProductId());
+        log.info("Retrieved product detail: {}", productDetailDTO);
+        return productDetailDTO;
     }
     public Page<ProductManageDTO> getManageProducts(String searchKeyword, int page, int size)
     {
@@ -117,15 +120,15 @@ public class ProductService {
 
             // Save product to get ID
             Product savedProduct = productRepo.save(product);
-            log.debug("Saved product with ID: {}", savedProduct.getProduct_id());
+            log.debug("Saved product with ID: {}", savedProduct.getProductId());
 
             // Save images if provided
             List<String> imagePaths = List.of();
             if (productCreateDTO.getImages() != null && !productCreateDTO.getImages().isEmpty()) {
-                imagePaths = fileStorageService.saveImages(productCreateDTO.getImages(), savedProduct.getProduct_id());
-                log.debug("Saved {} images for product ID: {}", imagePaths.size(), savedProduct.getProduct_id());
+                imagePaths = fileStorageService.saveImages(productCreateDTO.getImages(), savedProduct.getProductId());
+                log.debug("Saved {} images for product ID: {}", imagePaths.size(), savedProduct.getProductId());
             } else {
-                log.warn("No images provided for product ID: {}", savedProduct.getProduct_id());
+                log.warn("No images provided for product ID: {}", savedProduct.getProductId());
             }
 
             // Update product with images
@@ -140,7 +143,7 @@ public class ProductService {
                 log.debug("Updated product with image paths: {}", imagePaths);
             }
 
-            log.info("Successfully created product with ID: {}", savedProduct.getProduct_id());
+            log.info("Successfully created product with ID: {}", savedProduct.getProductId());
             return productMapper.entityToDetailDto(savedProduct);
         } catch (IOException e) {
             log.error("Failed to save images for product: {}", productCreateDTO.getName(), e);
@@ -175,11 +178,11 @@ public class ProductService {
             List<ProductInfo> updatedProductInfos = updateProductInfos(product, productCreateDTO.getVariations());
             log.debug("Processed {} product infos for product ID: {}", updatedProductInfos.size(), id);
 
-            updatedProduct.setProduct_id(product.getProduct_id());
+            updatedProduct.setProductId(product.getProductId());
             updatedProduct.setUpdatedAt(Timestamp.from(Instant.now()));
             updatedProduct.setAddedAt(product.getAddedAt());
             updatedProduct.setSold(updatedProduct.getSold()==null?0:updatedProduct.getSold());
-            log.debug("Updated product with ID: {}: addedAt: {}, updatedAt: {}", updatedProduct.getProduct_id(), updatedProduct.getAddedAt(), updatedProduct.getUpdatedAt());
+            log.debug("Updated product with ID: {}: addedAt: {}, updatedAt: {}", updatedProduct.getProductId(), updatedProduct.getAddedAt(), updatedProduct.getUpdatedAt());
 
             updatedProduct.getProductInfos().clear();
             updatedProduct.getProductInfos().addAll(updatedProductInfos);

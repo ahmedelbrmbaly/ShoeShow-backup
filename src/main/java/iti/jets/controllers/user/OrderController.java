@@ -1,4 +1,4 @@
-package iti.jets.controllers;
+package iti.jets.controllers.user;
 
 import iti.jets.model.dtos.OrderDTO;
 import iti.jets.services.OrderService;

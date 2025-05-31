@@ -71,7 +71,7 @@ public class ProductAdminController
     {
         log.info("Creating product with DTO {}", productCreateDTO);
         ProductDetailDTO createdProduct = productService.createProduct(productCreateDTO);
-        log.info("Created product with id {}", createdProduct.getProduct_id());
+        log.info("Created product with id {}", createdProduct.getProductId());
         return ResponseEntity.ok(createdProduct);
     }
 

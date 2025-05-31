@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class ProductDetailDTO {
     @Schema(description = "The unique identifier of the product")
-    private Long product_id;
+    private Long productId;
     @Schema(description = "The name of the product")
     private String name;
     @Schema(description = "The description of the product")
