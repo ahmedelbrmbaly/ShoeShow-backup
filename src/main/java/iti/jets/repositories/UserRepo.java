@@ -9,7 +9,10 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 public interface UserRepo extends JpaRepository<User, Long> {
+
     Optional<User> findByUserId(Long userId);
+
+    User findByEmail(String email);
 
     @Query("SELECT u.creditLimit FROM User u WHERE u.userId = :userId")
     BigDecimal findCreditLimitByUserId(@Param("userId") Long userId);

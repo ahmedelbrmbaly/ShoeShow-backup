@@ -1,13 +1,11 @@
 package iti.jets.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
 @Table(name = "UserAddress")
-@Getter
-@Setter
+@Data
 public class UserAddress {
 
     @Id
@@ -30,26 +28,5 @@ public class UserAddress {
 
     @Column(name = "is_default", nullable = false)
     private Boolean isDefault;
-
-    // constructors
-    public UserAddress() {
-    }
-
-    public UserAddress(Long addressId, User user, String state, String street, Integer buildingNumber, Boolean isDefault) {
-        this.addressId = addressId;
-        this.user = user;
-        this.state = state;
-        this.street = street;
-        this.buildingNumber = buildingNumber;
-        this.isDefault = isDefault;
-    }
-
-    public UserAddress(User user, String state, String street, Integer buildingNumber, Boolean isDefault) {
-        this.user = user;
-        this.state = state;
-        this.street = street;
-        this.buildingNumber = buildingNumber;
-        this.isDefault = isDefault;
-    }
 
 }

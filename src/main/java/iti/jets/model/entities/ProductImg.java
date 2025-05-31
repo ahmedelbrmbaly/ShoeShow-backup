@@ -1,11 +1,9 @@
 package iti.jets.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "ProductImg")
 public class ProductImg {
@@ -24,48 +22,4 @@ public class ProductImg {
 
     @Column(name = "is_default", nullable = false)
     private Boolean isDefault;
-
-    // constructors
-    public ProductImg() {
-    }
-
-    public ProductImg(Long imageId, Product product, String img, Boolean isDefault) {
-        this.imageId = imageId;
-        this.product = product;
-        this.img = img;
-        this.isDefault = isDefault;
-    }
-
-//    // Getters and setters
-//    public Integer getImageId() {
-//        return imageId;
-//    }
-//
-//    public void setImageId(Integer imageId) {
-//        this.imageId = imageId;
-//    }
-//
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
-//
-//    public String getImg() {
-//        return img;
-//    }
-//
-//    public void setImg(String img) {
-//        this.img = img;
-//    }
-//
-//    public Boolean getIsDefault() {
-//        return isDefault;
-//    }
-//
-//    public void setIsDefault(Boolean isDefault) {
-//        this.isDefault = isDefault;
-//    }
 }
