@@ -1,15 +1,13 @@
 package iti.jets.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "ShoppingCart")
-@Getter
-@Setter
+@Data
 public class ShoppingCart {
 
     @Id
@@ -30,57 +28,4 @@ public class ShoppingCart {
 
     @Column(name = "added_at", nullable = false)
     private Timestamp addedAt;
-
-    // constructors
-    public ShoppingCart() {
-    }
-
-    public ShoppingCart(Long itemId, User user, ProductInfo productInfo, Integer quantity, Timestamp addedAt) {
-        this.itemId = itemId;
-        this.user = user;
-        this.productInfo = productInfo;
-        this.quantity = quantity;
-        this.addedAt = addedAt;
-    }
-
-    // Getters and setters
-//    public Integer getItemId() {
-//        return itemId;
-//    }
-//
-//    public void setItemId(Integer itemId) {
-//        this.itemId = itemId;
-//    }
-//
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-//
-//    public ProductInfo getProductInfo() {
-//        return productInfo;
-//    }
-//
-//    public void setProductInfo(ProductInfo productInfo) {
-//        this.productInfo = productInfo;
-//    }
-//
-//    public Integer getQuantity() {
-//        return quantity;
-//    }
-//
-//    public void setQuantity(Integer quantity) {
-//        this.quantity = quantity;
-//    }
-//
-//    public Timestamp getAddedAt() {
-//        return addedAt;
-//    }
-//
-//    public void setAddedAt(Timestamp addedAt) {
-//        this.addedAt = addedAt;
-//    }
 }

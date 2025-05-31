@@ -3,14 +3,13 @@ package iti.jets.model.entities;
 import iti.jets.model.enums.Category;
 import iti.jets.model.enums.Gender;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
-@Getter
-@Setter
+
+@Data
 @Entity
 @Table(name = "Product")
 public class Product {
@@ -54,33 +53,5 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ProductImg> productImgs;
-
-    // constructors
-    public Product() {
-    }
-
-    public Product(Long productId, String name, String description, Category category, Gender gender, BigDecimal price, String brand, Timestamp addedAt, Integer sold, Timestamp updatedAt) {
-        this.product_id = productId;
-        this.name = name;
-        this.description = description;
-        this.category = category;
-        this.gender = gender;
-        this.price = price;
-        this.brand = brand;
-        this.addedAt = addedAt;
-        this.sold = sold;
-        this.updatedAt = updatedAt;
-    }
-    public Product(String name, String description, Category category, Gender gender, BigDecimal price, String brand, Timestamp addedAt, Integer sold, Timestamp updatedAt) {
-        this.name = name;
-        this.description = description;
-        this.category = category;
-        this.gender = gender;
-        this.price = price;
-        this.brand = brand;
-        this.addedAt = addedAt;
-        this.sold = sold;
-        this.updatedAt = updatedAt;
-    }
 
 }

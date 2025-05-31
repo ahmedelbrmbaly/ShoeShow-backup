@@ -1,8 +1,4 @@
 package iti.jets.model.mappers.custom;
-
-import iti.jets.model.dtos.ProductInfoDTO;
-import iti.jets.model.dtos.ShoppingCartSummaryDTO;
-import iti.jets.model.dtos.UserDTO;
 import iti.jets.model.entities.*;
 
 import java.util.ArrayList;

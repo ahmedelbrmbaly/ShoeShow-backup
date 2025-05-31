@@ -25,7 +25,6 @@ public class UserDTO {
     private String job;
     private BigDecimal creditLimit;
     private String interests;
-    // private Timestamp createdAt;
     private List<UserAddressDTO> addresses = new ArrayList<UserAddressDTO>();
     private List<ShoppingCartSummaryDTO> shoppingCart = new ArrayList<>();
     private List<WishlistDTO> wishlist = new ArrayList<>();

@@ -4,6 +4,7 @@ import iti.jets.model.dtos.LoginRequest;
 import iti.jets.model.dtos.RegisterRequest;
 import iti.jets.model.dtos.Token;
 import iti.jets.model.entities.User;
+import iti.jets.services.AuthService;
 import iti.jets.services.UserService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -19,21 +20,21 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class AuthController {
 
-    private final UserService userService;
+    private final AuthService authService;
 
-    public AuthController(UserService userService) {
-        this.userService = userService;
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
 
     @PostMapping(value = "/login", produces = "application/json")
     public ResponseEntity<Token> login(@RequestBody(required = false)LoginRequest loginRequest) {
-        return ResponseEntity.ok(userService.validateUser(loginRequest)) ;
+        return ResponseEntity.ok(authService.validateUser(loginRequest)) ;
     }
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody @Valid RegisterRequest registerRequest) {
         log.info(registerRequest.toString());
-        userService.saveUser(registerRequest);
+        authService.saveUser(registerRequest);
         return ResponseEntity.ok().build();
     }
 

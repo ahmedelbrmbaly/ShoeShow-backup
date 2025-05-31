@@ -8,10 +8,9 @@ import lombok.*;
 
 @Entity
 @Table(name = "size")
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class Size {
 
