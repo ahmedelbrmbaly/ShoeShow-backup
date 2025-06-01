@@ -11,6 +11,7 @@ import iti.jets.model.mappers.UserMapper;
 import iti.jets.repositories.AdminRepo;
 import iti.jets.repositories.UserRepo;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -50,10 +51,14 @@ public class AuthService {
         if (email == null || password == null || email.isEmpty() || password.isEmpty()) {
             throw new BadRequestException("Email and Password required");
         }
+        Authentication authentication;
+        try{
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(email, password));
+        }catch (BadCredentialsException e){
+            throw new BadCredentialsException("Invalid username or password");
+        }
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(email, password)
-        );
 
         if (authentication.isAuthenticated()) {
             boolean hasUserRole = authentication.getAuthorities().stream()
