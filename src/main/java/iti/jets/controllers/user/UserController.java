@@ -13,6 +13,7 @@ import iti.jets.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/users")
+@PreAuthorize("#userId == principal.user.userId")
 @Slf4j
 @Tag(name = "User Management", description = "APIs for user profile management")
 @SecurityRequirement(name = "bearerAuth")
@@ -36,7 +38,7 @@ public class UserController {
     /**
      * Retrieves the profile details of a user by ID.
      *
-     * @param id User ID
+     * @param userId User ID
      * @return ResponseEntity containing a UserProfileDataDTO
      */
     @Operation(
@@ -56,19 +58,19 @@ public class UserController {
             @ApiResponse(responseCode = "403", description = "Forbidden - Not authorized to access this resource"),
             @ApiResponse(responseCode = "404", description = "User not found")
     })
-    @GetMapping("/{id}")
+    @GetMapping("/{userId}")
     public ResponseEntity<UserProfileDataDTO> getUserById(
             @Parameter(description = "User ID", required = true, example = "1")
-            @PathVariable Long id) {
-        log.info("Retrieving user with ID: {}", id);
-        UserProfileDataDTO user = userService.getUserById(id);
+            @PathVariable Long userId) {
+        log.info("Retrieving user with ID: {}", userId);
+        UserProfileDataDTO user = userService.getUserById(userId);
         return ResponseEntity.ok(user);
     }
 
     /**
      * Updates the profile data of a specific user.
      *
-     * @param id User ID
+     * @param userId User ID
      * @param userProfileDataDTO User profile data
      * @return ResponseEntity with no content
      */
@@ -83,14 +85,14 @@ public class UserController {
             @ApiResponse(responseCode = "403", description = "Forbidden - Not authorized to access this resource"),
             @ApiResponse(responseCode = "404", description = "User not found")
     })
-    @PutMapping("/{id}")
+    @PutMapping("/{userId}")
     public ResponseEntity<Void> updateUser(
             @Parameter(description = "User ID", required = true, example = "1")
-            @PathVariable Long id,
+            @PathVariable Long userId,
             @Parameter(description = "User profile data to update", required = true)
             @RequestBody UserProfileDataDTO userProfileDataDTO) {
-        log.info("Updating user with ID: {}", id);
-        userService.updateUser(id, userProfileDataDTO);
+        log.info("Updating user with ID: {}", userId);
+        userService.updateUser(userId, userProfileDataDTO);
         return ResponseEntity.noContent().build();
     }
 }
