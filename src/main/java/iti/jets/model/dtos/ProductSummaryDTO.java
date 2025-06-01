@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class ProductSummaryDTO {
-    private Long product_id;
+    private Long productId;
     private String name;
     private BigDecimal price;
     private String img;

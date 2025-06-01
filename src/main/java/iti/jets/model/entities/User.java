@@ -1,9 +1,7 @@
 package iti.jets.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -12,8 +10,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "User")
-@Getter
-@Setter
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -61,30 +61,4 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Wishlist> wishlist;
-
-    // constructors
-    public User() {}
-    public User(Long userId, String name, String phoneNumber, String email, String password, Date birthdate, String job, BigDecimal creditLimit, String interests, Timestamp createdAt) {
-        this.userId = userId;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-        this.birthdate = birthdate;
-        this.job = job;
-        this.creditLimit = creditLimit;
-        this.interests = interests;
-        this.createdAt = createdAt;
-    }
-    public User(String name, String phoneNumber, String email, String password, Date birthdate, String job, BigDecimal creditLimit, String interests, Timestamp createdAt) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-        this.birthdate = birthdate;
-        this.job = job;
-        this.creditLimit = creditLimit;
-        this.interests = interests;
-        this.createdAt = createdAt;
-    }
 }

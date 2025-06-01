@@ -27,8 +27,8 @@ public interface ProductMapper {
     @Mapping(target = "img", expression = "java(MapStructHelpers.getImagesPaths(product))")
     ProductDetailDTO entityToDetailDto(Product product);
 
-    @Mapping(target = "productImgs",expression = "java(MapStructHelpers.getProductImages(product,images))")
-    @Mapping(target = "productInfos", source = "productCreateDTO.variations")
+    @Mapping(target = "productImgs", expression = "java(MapStructHelpers.getProductImages(product, images))")
+    @Mapping(source = "productCreateDTO.variations", target = "productInfos")
     Product createDtotoEntity(ProductCreateDTO productCreateDTO, List<String> images);
 
     @AfterMapping

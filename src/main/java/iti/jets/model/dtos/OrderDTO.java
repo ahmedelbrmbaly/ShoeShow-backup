@@ -9,11 +9,8 @@ import java.sql.Timestamp;
 @Data
 public class OrderDTO {
     private Long orderId;
-
     private BigDecimal totalAmount;
-
     private Timestamp createdAt;
-
     private OrderStatus orderStatus;
 
 }

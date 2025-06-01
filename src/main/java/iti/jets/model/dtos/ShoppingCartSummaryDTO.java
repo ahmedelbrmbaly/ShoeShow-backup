@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class ShoppingCartSummaryDTO {
     private Long productInfoId;
-    private Long product_id;
+    private Long productId;
     private Integer quantity;
 }
