@@ -5,12 +5,14 @@ import iti.jets.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users/{userId}/wishlist")
+@PreAuthorize("#userId == principal.user.userId")
 @Slf4j
 public class WishlistController {
 

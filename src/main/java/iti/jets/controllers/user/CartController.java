@@ -5,12 +5,14 @@ import iti.jets.model.dtos.ShoppingCartSummaryDTO;
 import iti.jets.services.CartService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users/{userId}/cart")
+@PreAuthorize("#userId == principal.user.userId")
 @Slf4j
 public class CartController {
 
@@ -27,8 +29,7 @@ public class CartController {
         cartService.addToCart(userId, shoppingCartSummaryDTO);
     }
     @DeleteMapping("/items/{itemId}")
-    public void deleteCartItem(@PathVariable("itemId") Long itemId)
-    {
+    public void deleteCartItem(@PathVariable Long userId, @PathVariable Long itemId) {
         cartService.deleteCartItem(itemId);
     }
 
