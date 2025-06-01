@@ -1,6 +1,5 @@
 package iti.jets.configs;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,7 +23,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,
                        AccessDeniedException accessDeniedException
-    ) throws IOException, ServletException {
+    ) {
 
         // This will forward the exception to GlobalExceptionHandler
         exceptionResolver.resolveException(request, response, null, accessDeniedException);

@@ -7,7 +7,6 @@ import iti.jets.model.dtos.RegisterRequest;
 import iti.jets.model.dtos.Token;
 import iti.jets.model.entities.User;
 import iti.jets.model.entities.UserAddress;
-import iti.jets.model.mappers.UserMapper;
 import iti.jets.repositories.AdminRepo;
 import iti.jets.repositories.UserRepo;
 import org.springframework.security.authentication.AuthenticationManager;
