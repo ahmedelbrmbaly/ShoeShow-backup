@@ -41,7 +41,7 @@ public class CartService {
 
     public List<ShoppingCartDTO> getCartItemsByUserId(Long userId) {
         List<ShoppingCart> shoppingCarts = cartRepo.findByUser_UserId(userId);
-        if(shoppingCarts == null || shoppingCarts.isEmpty())
+        if(shoppingCarts == null)
         {
             throw new ResourceNotFoundException("Shopping cart is empty");
         }

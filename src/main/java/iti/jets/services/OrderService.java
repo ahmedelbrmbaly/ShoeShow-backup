@@ -41,7 +41,7 @@ public class OrderService {
 
     public List<OrderDTO> getOrdersByUserId(Long userId){
         List<Order> orders = orderRepo.findByUser_UserId(userId);
-        if(orders == null || orders.isEmpty())
+        if(orders == null)
         {
             throw new ResourceNotFoundException("Not have orders yet");
         }
