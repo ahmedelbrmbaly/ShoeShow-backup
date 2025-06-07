@@ -8,7 +8,7 @@ import lombok.*;
 
 @Data
 public class ShoppingCartDTO {
-    // private int itemId;
+     private int itemId;
     private Long productId;
     private Long productInfoId;
     private Long userId;

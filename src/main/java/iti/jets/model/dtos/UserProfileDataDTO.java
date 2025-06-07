@@ -1,12 +1,14 @@
 package iti.jets.model.dtos;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 @Data
+@ToString
 public class UserProfileDataDTO {
     private Long userId;
 

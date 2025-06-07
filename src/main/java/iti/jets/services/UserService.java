@@ -1,15 +1,14 @@
 package iti.jets.services;
 
 import iti.jets.exceptions.ResourceNotFoundException;
-import iti.jets.model.dtos.ShoppingCartSummaryDTO;
-import iti.jets.model.dtos.UserDTO;
-import iti.jets.model.dtos.WishlistDTO;
-import iti.jets.model.dtos.UserManageDTO;
-import iti.jets.model.dtos.UserProfileDataDTO;
+import iti.jets.model.dtos.*;
 import iti.jets.model.entities.User;
+import iti.jets.model.entities.UserAddress;
+import iti.jets.model.mappers.UserAddressMapper;
 import iti.jets.model.mappers.UserMapper;
 import iti.jets.repositories.UserRepo;
 import jakarta.persistence.EntityManager;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,14 +17,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class UserService {
 
     private final UserMapper userMapper;
     private final UserRepo userRepo;
+    private final UserAddressMapper userAddressMapper;
 
-    public UserService(UserMapper userMapper, UserRepo userRepo) {
+    public UserService(UserMapper userMapper, UserRepo userRepo, UserAddressMapper userAddressMapper) {
         this.userMapper = userMapper;
         this.userRepo = userRepo;
+        this.userAddressMapper = userAddressMapper;
     }
 
     /**
@@ -73,6 +75,8 @@ public class UserService {
      */
     @Transactional
     public UserProfileDataDTO updateUser(Long id, UserProfileDataDTO userProfileDataDTO) {
+        log.info("Updating user with ID: {}", id);
+        log.info("User profile data to update: {}", userProfileDataDTO);
         User user = findUserById(id);
 
         // Update user fields
@@ -83,6 +87,17 @@ public class UserService {
         user.setJob(userProfileDataDTO.getJob());
         user.setCreditLimit(userProfileDataDTO.getCreditLimit());
         user.setInterests(userProfileDataDTO.getInterests());
+
+        if (userProfileDataDTO.getAddresses() != null) {
+            user.getAddresses().clear();
+
+            for (UserAddressDTO addressDTO : userProfileDataDTO.getAddresses()) {
+                UserAddress address = userAddressMapper.toEntity(addressDTO);
+                address.setUser(user);
+                user.getAddresses().add(address);
+            }
+        }
+
 
         // Save updated user
         User updatedUser = userRepo.save(user);
