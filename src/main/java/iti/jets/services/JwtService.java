@@ -15,7 +15,7 @@ import java.util.Map;
 @Service
 public class JwtService {
     private static final String SECRET = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
-    private static final long EXPIRATION_TIME = 86400000; // 24 hours
+    private static final long EXPIRATION_TIME = 604800000; // 24 hours
 
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
