@@ -1,7 +1,11 @@
 package iti.jets.repositories;
 
 import iti.jets.model.entities.Order;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.Query;
 
 import java.math.BigDecimal;
@@ -23,4 +27,9 @@ public interface OrderRepo extends JpaRepository<Order,Integer> {
     ORDER BY DATE_FORMAT(o.created_at, '%Y-%m')
     """, nativeQuery = true)
     List<Object[]> getMonthlySalesStatisticsRaw();
+
+    Page<Order> findAll(Pageable pageable);
+
+    @Query("SELECT o FROM Order o WHERE o.user.email = :email")
+    Page<Order> findOrdersByUserEmailContainingIgnoreCase(@Param("email") String searchEmail , Pageable pageable);
 }

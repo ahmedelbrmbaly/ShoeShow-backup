@@ -1,6 +1,9 @@
 package iti.jets.repositories;
 
+import iti.jets.model.entities.Product;
 import iti.jets.model.entities.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,4 +19,7 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     @Query("SELECT u.creditLimit FROM User u WHERE u.userId = :userId")
     BigDecimal findCreditLimitByUserId(@Param("userId") Long userId);
+
+    Page<User> findByNameContainingIgnoreCase(String searchKeyword, Pageable pageable);
+
 }

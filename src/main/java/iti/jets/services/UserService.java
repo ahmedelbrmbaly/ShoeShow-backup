@@ -2,6 +2,7 @@ package iti.jets.services;
 
 import iti.jets.exceptions.ResourceNotFoundException;
 import iti.jets.model.dtos.*;
+import iti.jets.model.entities.Product;
 import iti.jets.model.entities.User;
 import iti.jets.model.entities.UserAddress;
 import iti.jets.model.mappers.UserAddressMapper;
@@ -9,6 +10,9 @@ import iti.jets.model.mappers.UserMapper;
 import iti.jets.repositories.UserRepo;
 import jakarta.persistence.EntityManager;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,10 +51,12 @@ public class UserService {
      *
      * @return List of UserManageDTO objects
      */
-    public List<UserManageDTO> getAllUsers() {
-        return userRepo.findAll().stream()
-                .map(userMapper::toUserManageDTO)
-                .collect(Collectors.toList());
+    public Page<UserManageDTO> getAllUsers(String searchKeyword, int page, int size) {
+        Pageable pageable = PageRequest.of(page,size);
+
+        Page<User> users = userRepo.findByNameContainingIgnoreCase(searchKeyword, pageable);
+        log.info("Retrieved {} users with search keyword '{}'", users.getTotalElements(), searchKeyword);
+        return users.map(userMapper::toUserManageDTO);
     }
 
     /**
