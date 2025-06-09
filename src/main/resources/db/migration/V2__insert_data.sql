@@ -4,18 +4,39 @@ iti_grad;
 --     pass456
 --     pass789
 INSERT INTO User (name, phone_number, email, password, birthdate, job, credit_limit, interests)
-VALUES ('Tom Lee', '01011112222', 'tom@example.com', '$2a$10$aQmNrJURhcUJ6mnhk94AD.zBF4JsI8rNxBUrvFvCAmtWzuyMud5CC', '1999-03-14', 'Engineer', 10000.00,
-        'SNEAKERS,CASUAL'),
-       ('Ann Kim', '01033334444', 'ann@example.com', '$2a$10$ALIMK0F/tm9z0N02bcaVueflM6e96xBBx8ctUrWKj7djsXsMg04cW', '1998-08-21', 'Designer', 8000.00,
-        'CLASSIC,SNEAKERS'),
-       ('Bob Jay', '01055556666', 'bob@example.com', '$2a$10$DMld26R.lbIzCF3iSvSbMembMuO2SqKjkHaQzf9laMN.75bqxFZIC', '1997-12-01', 'Developer', 12000.00,
-        'SNEAKERS,CLASSIC');
+VALUES ('Tom Lee', '01011112222', 'tom@example.com', '$2a$10$aQmNrJURhcUJ6mnhk94AD.zBF4JsI8rNxBUrvFvCAmtWzuyMud5CC', '1999-03-14', 'Engineer', 10000.00,'SNEAKERS,CASUAL'),
+       ('Ann Kim', '01033334444', 'ann@example.com', '$2a$10$ALIMK0F/tm9z0N02bcaVueflM6e96xBBx8ctUrWKj7djsXsMg04cW', '1998-08-21', 'Designer', 8000.00,'CLASSIC,SNEAKERS'),
+       ('Bob Jay', '01055556666', 'bob@example.com', '$2a$10$DMld26R.lbIzCF3iSvSbMembMuO2SqKjkHaQzf9laMN.75bqxFZIC', '1997-12-01', 'Developer', 12000.00,'SNEAKERS,CLASSIC'),
+       ('Lena Howard', '01077778888', 'lena@example.com', '$2a$10$5mPqLqboCgqJx8eN1MYkwe7EzLraK0f7cToDRRrUPT2mLw4IXR0Vu', '1996-06-22', 'Photographer', 9500.00, 'SNEAKERS,SPORTS'),
+       ('Samir Youssef', '01099990000', 'samir@example.com', '$2a$10$gJRAh9HHm6gVDF/U7AeR4es4YAXXQHH9xOQ3ETL0PzMPSPBuXhQ6a', '1995-01-10', 'Banker', 11000.00, 'CLASSIC,FORMAL'),
+       ('Nora Salem', '01088887777', 'nora@example.com', '$2a$10$zSnY90nD2m67g/AWZBsyQOZkx.HapYFvnIftQUzQnEqp8XFxsdZnW', '2000-11-04', 'Student', 6000.00, 'CASUAL,SNEAKERS'),
+       ('Adam Bakr', '01012345678', 'adam@example.com', '$2a$10$eYxkmGpCwItI06I8EyLGL.CSM4BPKsRfwvjEmFfszjNux0oQWBd1C', '1993-09-09', 'Freelancer', 10500.00, 'SPORTS,CASUAL'),
+       ('Dana Rizk', '01033332222', 'dana@example.com', '$2a$10$Iq1Dh/qpzBLUMkZxod84pO67EkmYkNfwAHsA2K3z5p2kE4FZ5TghW', '1992-05-30', 'Teacher', 7000.00, 'CLASSIC'),
+       ('Maya Adel', '01044445555', 'maya@example.com', '$2a$10$ShnTQW0N7S7OVgqvJ3s2EuIgYnpGcRtq5.QFdN0qjxMC6Dg5R71Oi', '1994-04-18', 'Architect', 8500.00, 'CLASSIC,CASUAL'),
+       ('Youssef Kamal', '01022223333', 'youssef@example.com', '$2a$10$OxnCCOJdd8zsv2zgnL70UuN7x43PlXcZxB3V/jFZZF8qxPqfXa5nK', '1990-10-30', 'Lawyer', 15000.00, 'FORMAL,CLASSIC'),
+       ('Lara Nabil', '01066667777', 'lara@example.com', '$2a$10$7X7kPOKqDjVDhLzMvL3rMufkFnpVdGAYrhCwKOWzSkqzU6Z70CnHe', '1998-01-12', 'Doctor', 9500.00, 'SNEAKERS,SPORTS'),
+       ('Omar Fathy', '01000001111', 'omar@example.com', '$2a$10$1ZlK3kNRDdOxt7tTfq8ODuUwPiLJqKJwqAFmxT19kV5Uc74C3MXDS', '1991-06-03', 'Pilot', 13000.00, 'CASUAL,FORMAL'),
+       ('Sandy Elbaz', '01013131313', 'sandy@example.com', '$2a$10$c95ccGyw7bdRz6VE/NsGVO0BqKxFzhZ4kElRP5wzw.KvoYDjY0T2C', '1999-07-07', 'Nutritionist', 7500.00, 'SNEAKERS'),
+       ('Hassan Shawky', '01088889999', 'hassan@example.com', '$2a$10$rN1ZqvJkXMZK/O5RAsw6CejbyAGgNoyN3uMf5v7VmLqH7VMTUkDtu', '1989-03-25', 'Photographer', 8000.00, 'CASUAL,CLASSIC'),
+       ('Nadine Fares', '01012121212', 'nadine@example.com', '$2a$10$ZAD8ABpnWoYZJpJk6pjVruO3Z8/M/aR4ceVCqYfVXvUAVMmWCVV3e', '1995-12-14', 'Dentist', 8800.00, 'SPORTS,FORMAL');
 
 
 INSERT INTO UserAddress (user_id, state, street, building_number, is_default)
 VALUES (1, 'Cairo', 'Tahrir St.', 5, true),
        (2, 'Giza', 'Mohandessin Ave.', 3, true),
-       (3, 'Alexandria', 'Stanley Beach Rd.', 10, true);
+       (3, 'Alexandria', 'Stanley Beach Rd.', 10, true),
+       (4, 'Giza', 'El Gomhoria St.', 12, true),
+       (5, 'Cairo', 'Nasr City Blvd.', 7, true),
+       (6, 'Giza', 'Dokki St.', 14, true),
+       (7, 'Giza', 'Corniche El Nile', 2, true),
+       (8, 'Cairo', 'El Sa’aa Square', 6, true),
+       (9, 'Cairo', 'Heliopolis St.', 15, true),
+       (10, 'Giza', 'Faisal St.', 9, true),
+       (11, 'Alexandria', 'Gleem Rd.', 20, true),
+       (12, 'Cairo', 'Sheraton Rd.', 5, true),
+       (13, 'Alexandria', 'Tayaran St.', 6, true),
+       (14, 'Cairo', 'Maadi Ring Rd.', 18, true),
+       (15, 'Cairo', 'El Shohadaa St.', 11, true);
 
 INSERT INTO Product (name, description, category, gender, price, brand, sold)
 VALUES ('Nike Daily Dash (Male)', 'Daily sneakers.', 'SNEAKERS', 'MALE', 2200.00, 'Nike', 10),

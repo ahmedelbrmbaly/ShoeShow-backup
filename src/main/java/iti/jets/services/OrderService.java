@@ -128,7 +128,7 @@ public class OrderService {
                         .orElseThrow(() -> new ResourceNotFoundException("ProductInfo not found")));
 
                 orderItem.setQuantity(shoppingCartDTO.getQuantity());
-                orderItem.setPriceAtPurchase(BigDecimal.valueOf((long) shoppingCartDTO.getPrice().intValue() * shoppingCartDTO.getQuantity()));
+                orderItem.setPriceAtPurchase(BigDecimal.valueOf(shoppingCartDTO.getPrice().intValue()));
                 orderItem.setOrder(order);
 
                 // update quantity of each product
