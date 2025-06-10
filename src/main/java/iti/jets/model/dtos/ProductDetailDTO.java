@@ -1,6 +1,8 @@
 package iti.jets.model.dtos;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import iti.jets.model.enums.Category;
+import iti.jets.model.enums.Gender;
 import lombok.Data;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,4 +22,10 @@ public class ProductDetailDTO {
     private List<String> img = new ArrayList<>();
     @Schema(description = "The list of product information of the product")
     private List<ProductInfoDTO> productInfos = new ArrayList<>();
+    @Schema(description = "The category of the product")
+    private Category category;
+    @Schema(description = "The gender of the product")
+    private Gender gender;
+    @Schema(description = "The brand of the product")
+    private String brand;
 }
