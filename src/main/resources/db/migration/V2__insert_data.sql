@@ -169,134 +169,133 @@ VALUES (19, 41, 'White', 5),
 
 -- Product 1
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (1, 'images/product-1/item1-1.jpg', TRUE),
-       (1, 'images/product-1/item1-2.jpg', FALSE),
-       (1, 'images/product-1/item1-3.jpg', FALSE),
-       (1, 'images/product-1/item1-4.jpg', FALSE);
+VALUES (1, 'uploads/product-1/item1-1.jpg', TRUE),
+       (1, 'uploads/product-1/item1-2.jpg', FALSE),
+       (1, 'uploads/product-1/item1-3.jpg', FALSE),
+       (1, 'uploads/product-1/item1-4.jpg', FALSE);
 
 -- Product 2
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (2, 'images/product-2/item2-1.jpg', TRUE),
-       (2, 'images/product-2/item2-2.jpg', FALSE),
-       (2, 'images/product-2/item2-3.jpg', FALSE),
-       (2, 'images/product-2/item2-4.jpg', FALSE);
+VALUES (2, 'uploads/product-2/item2-1.jpg', TRUE),
+       (2, 'uploads/product-2/item2-2.jpg', FALSE),
+       (2, 'uploads/product-2/item2-3.jpg', FALSE),
+       (2, 'uploads/product-2/item2-4.jpg', FALSE);
 
 -- Product 3
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (3, 'images/product-3/item3-1.jpg', TRUE),
-       (3, 'images/product-3/item3-2.jpg', FALSE),
-       (3, 'images/product-3/item3-3.jpg', FALSE),
-       (3, 'images/product-3/item3-4.jpg', FALSE);
+VALUES (3, 'uploads/product-3/item3-1.jpg', TRUE),
+       (3, 'uploads/product-3/item3-2.jpg', FALSE),
+       (3, 'uploads/product-3/item3-3.jpg', FALSE),
+       (3, 'uploads/product-3/item3-4.jpg', FALSE);
 
 -- Product 4
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (4, 'images/product-4/item4-1.jpg', TRUE),
-       (4, 'images/product-4/item4-2.jpg', FALSE),
-       (4, 'images/product-4/item4-3.jpg', FALSE),
-       (4, 'images/product-4/item4-4.jpg', FALSE);
+VALUES (4, 'uploads/product-4/item4-1.jpg', TRUE),
+       (4, 'uploads/product-4/item4-2.jpg', FALSE),
+       (4, 'uploads/product-4/item4-3.jpg', FALSE),
+       (4, 'uploads/product-4/item4-4.jpg', FALSE);
 
 -- Product 5 (repeat from item-1.jpg)
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (5, 'images/product-5/item5-1.jpg', FALSE),
-       (5, 'images/product-5/item5-2.jpg', TRUE),
-       (5, 'images/product-5/item5-3.jpg', FALSE),
-       (5, 'images/product-5/item5-4.jpg', FALSE);
+VALUES (5, 'uploads/product-5/item5-1.jpg', FALSE),
+       (5, 'uploads/product-5/item5-2.jpg', TRUE),
+       (5, 'uploads/product-5/item5-3.jpg', FALSE),
+       (5, 'uploads/product-5/item5-4.jpg', FALSE);
 
 -- Product 6
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (6, 'images/product-6/item6-1.jpg', TRUE),
-       (6, 'images/product-6/item6-2.jpg', FALSE),
-       (6, 'images/product-6/item6-3.jpg', FALSE),
-       (6, 'images/product-6/item6-4.jpg', FALSE);
+VALUES (6, 'uploads/product-6/item6-1.jpg', TRUE),
+       (6, 'uploads/product-6/item6-2.jpg', FALSE),
+       (6, 'uploads/product-6/item6-3.jpg', FALSE),
+       (6, 'uploads/product-6/item6-4.jpg', FALSE);
 
 -- Product 7
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (7, 'images/product-7/item7-1.jpg', TRUE),
-       (7, 'images/product-7/item7-2.jpg', FALSE),
-       (7, 'images/product-7/item7-3.jpg', FALSE),
-       (7, 'images/product-7/item7-4.jpg', FALSE);
+VALUES (7, 'uploads/product-7/item7-1.jpg', TRUE),
+       (7, 'uploads/product-7/item7-2.jpg', FALSE),
+       (7, 'uploads/product-7/item7-3.jpg', FALSE),
+       (7, 'uploads/product-7/item7-4.jpg', FALSE);
 
 -- Product 8
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (8, 'images/product-8/item8-1.jpg', TRUE),
-       (8, 'images/product-8/item8-2.jpg', FALSE),
-       (8, 'images/product-8/item8-3.jpg', FALSE),
-       (8, 'images/product-8/item8-4.jpg', FALSE);
+VALUES (8, 'uploads/product-8/item8-1.jpg', TRUE),
+       (8, 'uploads/product-8/item8-2.jpg', FALSE),
+       (8, 'uploads/product-8/item8-3.jpg', FALSE),
+       (8, 'uploads/product-8/item8-4.jpg', FALSE);
 
 -- Product 9
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (9, 'images/product-9/item9-1.jpg', TRUE),
-       (9, 'images/product-9/item9-2.jpg', FALSE),
-       (9, 'images/product-9/item9-3.jpg', FALSE),
-       (9, 'images/product-9/item9-4.jpg', FALSE);
+VALUES (9, 'uploads/product-9/item9-1.jpg', TRUE),
+       (9, 'uploads/product-9/item9-2.jpg', FALSE),
+       (9, 'uploads/product-9/item9-3.jpg', FALSE),
+       (9, 'uploads/product-9/item9-4.jpg', FALSE);
 
 -- Product 10
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (10, 'images/product-10/item10-1.jpg', TRUE),
-       (10, 'images/product-10/item10-2.jpg', FALSE),
-       (10, 'images/product-10/item10-3.jpg', FALSE),
-       (10, 'images/product-10/item10-4.jpg', FALSE);
+VALUES (10, 'uploads/product-10/item10-1.jpg', TRUE),
+       (10, 'uploads/product-10/item10-2.jpg', FALSE),
+       (10, 'uploads/product-10/item10-3.jpg', FALSE),
+       (10, 'uploads/product-10/item10-4.jpg', FALSE);
 
 -- Product 11
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (11, 'images/product-11/item11-1.jpg', FALSE),
-       (11, 'images/product-11/item11-2.jpg', FALSE),
-       (11, 'images/product-11/item11-3.jpg', TRUE),
-       (11, 'images/product-11/item11-4.jpg', FALSE);
+VALUES (11, 'uploads/product-11/item11-1.jpg', FALSE),
+       (11, 'uploads/product-11/item11-2.jpg', FALSE),
+       (11, 'uploads/product-11/item11-3.jpg', TRUE),
+       (11, 'uploads/product-11/item11-4.jpg', FALSE);
 
 -- Product 12
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (12, 'images/product-12/item12-1.jpg', FALSE),
-       (12, 'images/product-12/item12-2.jpg', TRUE),
-       (12, 'images/product-12/item12-3.jpg', FALSE),
-       (12, 'images/product-12/item12-4.jpg', FALSE);
+VALUES (12, 'uploads/product-12/item12-1.jpg', FALSE),
+       (12, 'uploads/product-12/item12-2.jpg', TRUE),
+       (12, 'uploads/product-12/item12-3.jpg', FALSE),
+       (12, 'uploads/product-12/item12-4.jpg', FALSE);
 
 -- Product 13
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (13, 'images/product-13/item13-1.jpg', FALSE),
-       (13, 'images/product-13/item13-2.jpg', TRUE),
-       (13, 'images/product-13/item13-3.jpg', FALSE),
-       (13, 'images/product-13/item13-4.jpg', FALSE);
+VALUES (13, 'uploads/product-13/item13-1.jpg', FALSE),
+       (13, 'uploads/product-13/item13-2.jpg', TRUE),
+       (13, 'uploads/product-13/item13-3.jpg', FALSE),
+       (13, 'uploads/product-13/item13-4.jpg', FALSE);
 
 -- Product 14
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (14, 'images/product-14/item14-1.jpg', FALSE),
-       (14, 'images/product-14/item14-2.jpg', FALSE),
-       (14, 'images/product-14/item14-3.jpg', TRUE),
-       (14, 'images/product-14/item14-4.jpg', FALSE);
+VALUES (14, 'uploads/product-14/item14-1.jpg', FALSE),
+       (14, 'uploads/product-14/item14-2.jpg', FALSE),
+       (14, 'uploads/product-14/item14-3.jpg', TRUE),
+       (14, 'uploads/product-14/item14-4.jpg', FALSE);
 
 -- Product 15
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (15, 'images/product-15/item15-1.jpg', FALSE),
-       (15, 'images/product-15/item15-2.jpg', TRUE),
-       (15, 'images/product-15/item15-3.jpg', FALSE),
-       (15, 'images/product-15/item15-4.jpg', FALSE);
+VALUES (15, 'uploads/product-15/item15-1.jpg', FALSE),
+       (15, 'uploads/product-15/item15-2.jpg', TRUE),
+       (15, 'uploads/product-15/item15-3.jpg', FALSE),
+       (15, 'uploads/product-15/item15-4.jpg', FALSE);
 
 -- Product 16
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (16, 'images/product-16/item16-1.jpg', FALSE),
-       (16, 'images/product-16/item16-2.jpg', TRUE),
-       (16, 'images/product-16/item16-3.jpg', FALSE),
-       (16, 'images/product-16/item16-4.jpg', FALSE);
+VALUES (16, 'uploads/product-16/item16-1.jpg', FALSE),
+       (16, 'uploads/product-16/item16-2.jpg', TRUE),
+       (16, 'uploads/product-16/item16-3.jpg', FALSE),
+       (16, 'uploads/product-16/item16-4.jpg', FALSE);
 
 -- Product 17
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (17, 'images/product-17/item17-1.jpg', TRUE),
-       (17, 'images/product-17/item17-2.jpg', FALSE),
-       (17, 'images/product-17/item17-3.jpg', FALSE),
-       (17, 'images/product-17/item17-4.jpg', FALSE);
+VALUES (17, 'uploads/product-17/item17-1.jpg', TRUE),
+       (17, 'uploads/product-17/item17-2.jpg', FALSE),
+       (17, 'uploads/product-17/item17-3.jpg', FALSE),
+       (17, 'uploads/product-17/item17-4.jpg', FALSE);
 
 -- Product 18
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (18, 'images/product-18/item18-1.jpg', TRUE),
-       (18, 'images/product-18/item18-2.jpg', FALSE),
-       (18, 'images/product-18/item18-3.jpg', FALSE),
-       (18, 'images/product-18/item18-4.jpg', FALSE);
+VALUES (18, 'uploads/product-18/item18-1.jpg', TRUE),
+       (18, 'uploads/product-18/item18-2.jpg', FALSE),
+       (18, 'uploads/product-18/item18-3.jpg', FALSE),
+       (18, 'uploads/product-18/item18-4.jpg', FALSE);
 
 -- Product 19
 INSERT INTO ProductImg (product_id, img, is_default)
-VALUES (19, 'images/product-19/item19-1.jpg', TRUE),
-       (19, 'images/product-19/item19-2.jpg', FALSE),
-       (19, 'images/product-19/item19-3.jpg', FALSE),
-       (19, 'images/product-19/item19-4.jpg', FALSE);
-
+VALUES (19, 'uploads/product-19/item19-1.jpg', TRUE),
+       (19, 'uploads/product-19/item19-2.jpg', FALSE),
+       (19, 'uploads/product-19/item19-3.jpg', FALSE),
+       (19, 'uploads/product-19/item19-4.jpg', FALSE);

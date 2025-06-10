@@ -2,6 +2,7 @@ package iti.jets.services;
 
 import iti.jets.exceptions.FileStorageException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,67 +17,55 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class FileStorageService
-{
-    private static final String BASE_STATIC_DIR = "src/main/resources/static/images/";
+public class FileStorageService {
+    private final Path fileStorageLocation;
 
-    public FileStorageService()
-    {
-        // Ensure base static/images directory exists
-        Path basePath = Paths.get(BASE_STATIC_DIR);
+    public FileStorageService(@Value("${app.file.upload-dir}") String uploadDir) {
+        this.fileStorageLocation = Paths.get(uploadDir)
+                .toAbsolutePath().normalize();
         try {
-            if (!Files.exists(basePath))
-            {
-                Files.createDirectories(basePath);
-                log.debug("Created base static directory: {}", basePath.toAbsolutePath());
-            }
+            Files.createDirectories(this.fileStorageLocation);
+            log.info("Created file storage directory: {}", this.fileStorageLocation);
         } catch (IOException e) {
-            throw new FileStorageException("Cannot initialize static directory: " + basePath, e);
+            throw new FileStorageException("Could not create the directory where the uploaded files will be stored.", e);
         }
     }
 
-    public List<String> saveImages(List<MultipartFile> images, Long productId) throws IOException 
-    {
+    public List<String> saveImages(List<MultipartFile> images, Long productId) throws IOException {
         List<String> imagePaths = new ArrayList<>();
-        Path uploadPath = Paths.get(BASE_STATIC_DIR, "product-" + productId);
+        Path productPath = this.fileStorageLocation.resolve("product-" + productId);
 
         // Create product-specific directory
-        if (!Files.exists(uploadPath))
-        {
+        if (!Files.exists(productPath)) {
             try {
-                Files.createDirectories(uploadPath);
-                log.debug("Created product directory: {}", uploadPath.toAbsolutePath());
+                Files.createDirectories(productPath);
+                log.debug("Created product directory: {}", productPath.toAbsolutePath());
             } catch (IOException e) {
-                throw new FileStorageException("Cannot create product directory: " + uploadPath, e);
+                throw new FileStorageException("Cannot create product directory: " + productPath, e);
             }
         }
 
-        if (images == null || images.isEmpty()) 
-        {
+        if (images == null || images.isEmpty()) {
             log.warn("No images provided for product ID: {}", productId);
             return imagePaths;
         }
 
-        for (int i = 0; i < images.size(); i++) 
-        {
+        for (int i = 0; i < images.size(); i++) {
             MultipartFile image = images.get(i);
-            if (image != null && !image.isEmpty()) 
-            {
+            if (image != null && !image.isEmpty()) {
                 // Validate image type
-                if (!image.getContentType().startsWith("image/")) 
-                {
+                if (!image.getContentType().startsWith("image/")) {
                     log.error("Invalid file type for image: {}", image.getOriginalFilename());
                     throw new IllegalArgumentException("Invalid file type: " + image.getOriginalFilename());
                 }
 
                 String fileExtension = getFileExtension(image.getOriginalFilename());
-                // Use new naming: item{productId}-{index}.{ext}
                 String fileName = String.format("item%d-%d%s", productId, i + 1, fileExtension);
-                Path filePath = uploadPath.resolve(fileName);
+                Path filePath = productPath.resolve(fileName);
 
                 try {
                     Files.write(filePath, image.getBytes());
-                    String relativePath = String.format("images/product-%d/%s", productId, fileName);
+                    String relativePath = String.format("uploads/product-%d/%s", productId, fileName);
                     imagePaths.add(relativePath);
                     log.debug("Saved image: {} at {}", relativePath, filePath.toAbsolutePath());
                 } catch (IOException e) {
@@ -90,34 +79,32 @@ public class FileStorageService
         return imagePaths;
     }
 
-    public void deleteProductImages(Long id)
-    {
-        Path productDir = Paths.get(BASE_STATIC_DIR,"product-"+id);
+    public void deleteProductImages(Long id) {
+        Path productDir = this.fileStorageLocation.resolve("product-" + id);
 
         try {
-            if(Files.exists(productDir))
-            {
+            if (Files.exists(productDir)) {
                 Files.walk(productDir)
                         .sorted(Comparator.reverseOrder())
-                        .map(Path::toFile)
-                        .forEach(File::delete);
+                        .forEach(path -> {
+                            try {
+                                Files.delete(path);
+                                log.debug("Deleted: {}", path);
+                            } catch (IOException e) {
+                                log.error("Error deleting {}: {}", path, e.getMessage());
+                                throw new FileStorageException("Could not delete " + path, e);
+                            }
+                        });
             }
         } catch (IOException e) {
-            throw new FileStorageException(" Cannot delete product images with id: "+id, e);
+            throw new FileStorageException("Could not delete product images for ID: " + id, e);
         }
     }
 
-    private String getFileExtension(String fileName) 
-    {
-        if (fileName == null || fileName.lastIndexOf('.') == -1) {
-            log.warn("No file extension found for file: {}, defaulting to .jpg", fileName);
-            return ".jpg";
-        }
-        String extension = fileName.substring(fileName.lastIndexOf('.')).toLowerCase();
-        if (!extension.matches("\\.(jpg|jpeg|png|gif)$")) {
-            log.warn("Unrecognized image extension: {}, defaulting to .jpg", extension);
-            return ".jpg";
-        }
-        return extension;
+    private String getFileExtension(String fileName) {
+        if (fileName == null) return "";
+        int lastDot = fileName.lastIndexOf('.');
+        return (lastDot > 0) ? fileName.substring(lastDot) : "";
     }
 }
+
