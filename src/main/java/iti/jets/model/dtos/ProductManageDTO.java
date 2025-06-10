@@ -19,4 +19,6 @@ public class ProductManageDTO {
     private BigDecimal price;
     @Schema(description = "Product quantity", example = "10", required = true)
     private Integer quantity;
+    @Schema(description = "Product image path", example = "/images/products/product1.jpg")
+    private String img;
 }

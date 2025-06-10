@@ -19,6 +19,7 @@ import java.util.List;
 public interface ProductMapper {
 
     @Mapping(target = "quantity", expression = "java(MapStructHelpers.sumQuantities(product))")
+    @Mapping(target = "img", expression = "java(MapStructHelpers.getImagePath(product))")
     ProductManageDTO entityToManageDto(Product product);
 
     @Mapping(target = "img", expression = "java(MapStructHelpers.getImagePath(product))")
