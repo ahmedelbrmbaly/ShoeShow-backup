@@ -1,7 +1,7 @@
 package iti.jets.configs;
 
-
 import iti.jets.services.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -31,6 +31,12 @@ public class SecurityConfig {
     private final JwtFilter jwtFilter;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
+    @Value("${app.frontend.url}")
+    private String frontendUrl;
+
+    @Value("${app.admin.url}")
+    private String adminUrl;
+
     public SecurityConfig(
             CustomUserDetailsService userDetailsService
             , JwtFilter jwtFilter
@@ -45,6 +51,9 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+//                .headers(headers -> headers
+//                    .frameOptions(frame -> frame.sameOrigin())
+//                    .contentSecurityPolicy(csp -> csp.policyDirectives("default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline';")))
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
@@ -86,8 +95,8 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:4200");
-        configuration.addAllowedOrigin("http://localhost:4201");
+        configuration.addAllowedOrigin(frontendUrl);
+        configuration.addAllowedOrigin(adminUrl);
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
