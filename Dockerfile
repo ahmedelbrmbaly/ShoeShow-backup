@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jdk-jammy
 WORKDIR /app
 
 # Copy the JAR file
-COPY target/ITI-Graduation-Project-1.0.jar app.jar
+COPY ./target/ITI-Graduation-Project-1.0.jar app.jar
 
 # Create directory for uploads (though we'll be using Cloudinary in production)
 RUN mkdir -p /app/uploads
