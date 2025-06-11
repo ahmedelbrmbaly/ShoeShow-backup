@@ -1,13 +1,17 @@
-# Use Eclipse Temurin as base image with Java 21
-FROM eclipse-temurin:21-jdk-jammy
+# Stage 1: Build the application
+FROM maven:3.9.3-eclipse-temurin-21 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Set working directory
+# Stage 2: Run the application
+FROM eclipse-temurin:21-jdk-jammy
 WORKDIR /app
 
-# Copy the JAR file
-COPY target/ITI-Graduation-Project-1.0.jar app.jar
+# Copy the JAR file from the build stage
+COPY --from=build /app/target/ITI-Graduation-Project-1.0.jar app.jar
 
-# Create directory for uploads (though we'll be using Cloudinary in production)
+# Create directory for uploads
 RUN mkdir -p /app/uploads
 
 # Environment variables with defaults
@@ -25,8 +29,5 @@ ENV PORT=8081 \
 # Expose the application port
 EXPOSE ${PORT}
 
-# Command to run the application
-ENTRYPOINT ["java", \
-           "-Djava.security.egd=file:/dev/./urandom", \
-           "-jar", \
-           "/app/app.jar"]
+# Run the application
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
