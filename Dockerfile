@@ -19,8 +19,8 @@ ENV PORT=8081 \
     DATABASE_URL=jdbc:mysql://hopper.proxy.rlwy.net:34464/railway?sslMode=REQUIRED \
     DATABASE_USERNAME=root \
     DATABASE_PASSWORD=MadkKyfLCfPHzraigxlPpgUcLcYsPIYh \
-    FRONTEND_URL=https://your-frontend-url.com \
-    ADMIN_URL=https://your-admin-url.com
+    FRONTEND_URL=http://localhost:3000 \
+    ADMIN_URL=http://localhost:3001
 
 EXPOSE 8081
 
