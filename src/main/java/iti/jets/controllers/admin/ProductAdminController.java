@@ -10,6 +10,7 @@ import iti.jets.model.dtos.ProductCreateDTO;
 import iti.jets.model.dtos.ProductDetailDTO;
 import iti.jets.model.dtos.ProductManageDTO;
 import iti.jets.services.ProductService;
+import iti.jets.sse.ProductSseService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -28,9 +29,11 @@ import java.util.Map;
 public class ProductAdminController
 {
     private final ProductService productService;
+    private final ProductSseService productSseService;
 
-    public ProductAdminController(ProductService productService) {
+    public ProductAdminController(ProductService productService, ProductSseService productSseService) {
         this.productService = productService;
+        this.productSseService = productSseService;
     }
 
     @GetMapping
@@ -72,6 +75,7 @@ public class ProductAdminController
         log.info("Creating product with DTO {}", productCreateDTO);
         ProductDetailDTO createdProduct = productService.createProduct(productCreateDTO);
         log.info("Created product with id {}", createdProduct.getProductId());
+        productSseService.sendNewProduct(createdProduct);
         return ResponseEntity.ok(createdProduct);
     }
 
