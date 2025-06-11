@@ -11,17 +11,17 @@ COPY --from=build /app/target/*.jar app.jar
 RUN mkdir -p /app/uploads
 
 # Environment variables
-ENV PORT=8081 \
-    SPRING_PROFILES_ACTIVE=prod \
+ENV SPRING_PROFILES_ACTIVE=prod \
     CLOUDINARY_CLOUD_NAME=Root \
     CLOUDINARY_API_KEY=775712753115847 \
     CLOUDINARY_API_SECRET=tOPqiiLjaQmCmteCyefaGPHNj3s \
     DATABASE_URL=jdbc:mysql://hopper.proxy.rlwy.net:34464/railway?sslMode=REQUIRED \
     DATABASE_USERNAME=root \
     DATABASE_PASSWORD=MadkKyfLCfPHzraigxlPpgUcLcYsPIYh \
-    FRONTEND_URL=http://localhost:3000 \
-    ADMIN_URL=http://localhost:3001
+    FRONTEND_URL=https://shoe-show-client.netlify.app \
+    ADMIN_URL=https://shoe-show-admin.netlify.app
 
-EXPOSE 8081
+# The PORT environment variable will be provided by Railway
+EXPOSE ${PORT}
 
 ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
