@@ -11,11 +11,11 @@ WORKDIR /app
 # Copy the built JAR from the build stage
 COPY --from=build /app/target/*.jar app.jar
 
+# Debug: List files to ensure app.jar is present
+RUN ls -l /app
+
 # Create the uploads directory (ephemeral on Railway)
 RUN mkdir -p /app/uploads
-
-# Use environment variables passed from Railway (don't hardcode in Dockerfile)
-# Railway will inject them automatically from the Dashboard settings
 
 # Expose port 8080 (used by Spring Boot and expected by Railway)
 EXPOSE 8080
