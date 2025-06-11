@@ -23,8 +23,7 @@ ENV PORT=8081 \
     ADMIN_URL=https://your-admin-url.com
 
 # Expose the application port
-EXPOSE ${PORT}
-
+EXPOSE 8081
 # Command to run the application
 ENTRYPOINT ["java", \
            "-Djava.security.egd=file:/dev/./urandom", \
