@@ -19,9 +19,9 @@ ENV SPRING_PROFILES_ACTIVE=prod \
     DATABASE_USERNAME=root \
     DATABASE_PASSWORD=MadkKyfLCfPHzraigxlPpgUcLcYsPIYh \
     FRONTEND_URL=https://shoe-show-client.netlify.app \
-    ADMIN_URL=https://shoe-show-admin.netlify.app
+    ADMIN_URL=https://shoe-show-admin.netlify.app \
+    PORT=8081
 
-# The PORT environment variable will be provided by Railway
-EXPOSE ${PORT}
+EXPOSE 8081
 
 ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
