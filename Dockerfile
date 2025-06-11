@@ -1,16 +1,29 @@
-# Use Eclipse Temurin as base image with Java 21
-FROM eclipse-temurin:21-jdk-jammy
-
-# Set working directory
+# ============================
+# Stage 1: Build the application
+# ============================
+FROM maven:3.9.3-eclipse-temurin-21 AS build
 WORKDIR /app
 
-# Copy the JAR file
-COPY ./target/ITI-Graduation-Project-1.0.jar app.jar
+# Copy source code and pom.xml
+COPY . .
 
-# Create directory for uploads (though we'll be using Cloudinary in production)
+# Build the project (skip tests for faster build)
+RUN mvn clean package -DskipTests
+
+
+# ============================
+# Stage 2: Run the application
+# ============================
+FROM eclipse-temurin:21-jdk-jammy
+WORKDIR /app
+
+# Copy the built JAR file from the previous stage
+COPY --from=build /app/target/ITI-Graduation-Project-1.0.jar app.jar
+
+# Create directory for uploads
 RUN mkdir -p /app/uploads
 
-# Environment variables with defaults
+# Environment variables (these should ideally be set in Railway's environment tab)
 ENV PORT=8081 \
     SPRING_PROFILES_ACTIVE=prod \
     CLOUDINARY_CLOUD_NAME=Root \
@@ -24,8 +37,6 @@ ENV PORT=8081 \
 
 # Expose the application port
 EXPOSE 8081
-# Command to run the application
-ENTRYPOINT ["java", \
-           "-Djava.security.egd=file:/dev/./urandom", \
-           "-jar", \
-           "/app/app.jar"]
+
+# Run the application
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
