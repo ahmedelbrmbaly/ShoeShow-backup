@@ -31,6 +31,12 @@ public class SecurityConfig {
     private final JwtFilter jwtFilter;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
+    @Value("${app.frontend.url}")
+    private String frontendUrl;
+
+    @Value("${app.admin.url}")
+    private String adminUrl;
+
     public SecurityConfig(
             CustomUserDetailsService userDetailsService
             , JwtFilter jwtFilter
@@ -86,8 +92,8 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:4200");
-        configuration.addAllowedOrigin("http://localhost:4201");
+        configuration.addAllowedOrigin(frontendUrl);
+        configuration.addAllowedOrigin(adminUrl);
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
