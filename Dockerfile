@@ -20,8 +20,9 @@ ENV SPRING_PROFILES_ACTIVE=prod \
     DATABASE_PASSWORD=MadkKyfLCfPHzraigxlPpgUcLcYsPIYh \
     FRONTEND_URL=https://shoe-show-client.netlify.app \
     ADMIN_URL=https://shoe-show-admin.netlify.app \
-    PORT=8081
+    PORT=8080
 
-EXPOSE 8081
+# Make sure to expose the same port that Railway expects
+EXPOSE 8080
 
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-Dserver.port=8080", "-jar", "app.jar"]
